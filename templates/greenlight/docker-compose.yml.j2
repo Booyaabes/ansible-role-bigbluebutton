@@ -8,7 +8,8 @@ services:
     env_file: .env
     restart: unless-stopped
 {% if bbb_ip is defined %}    extra_hosts:
-      - {{ bbb_hostname }}:{{ bbb_ip }}{% endif %}
+      - {{ bbb_hostname }}:{{ bbb_ip }}
+{% endif %}
     ports:
       - 127.0.0.1:5000:80
     volumes:
