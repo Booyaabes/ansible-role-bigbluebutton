@@ -13,7 +13,7 @@
 - name: Write private key
   copy:
     dest: "{{ bbb_ssl_key }}"
-    content: {{ bbb_ssl_private_key }}
+    content: "{{ bbb_ssl_private_key }}"
 
 - name: Validate private key file permissions
   file:
