@@ -1,0 +1,23 @@
+---
+- name: Ensure target directory exists
+  file:
+    dest: "{{ bbb_ssl_cert | dirname }}"
+    state: directory
+    mode: '0755'
+
+- name: Write certificate
+  copy:
+    dest: "{{ bbb_ssl_cert }}"
+    content: {{ bbb_ssl_certificate }}
+
+- name: Write private key
+  copy:
+    dest: "{{ bbb_ssl_key }}"
+    content: {{ bbb_ssl_private_key }}
+
+- name: Validate private key file permissions
+  file:
+    path: "{{ bbb_ssl_key }}"
+    owner: "root"
+    group: "{% if ansible_os_family == 'Debian' %}ssl-cert{% else %}root{% endif %}"
+    mode: '0440'

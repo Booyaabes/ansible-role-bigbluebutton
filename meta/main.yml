@@ -23,3 +23,4 @@ dependencies:
     vars:
       nodejs_version: "{{ bbb_nodejs_version }}"
   - role: geerlingguy.docker
+  - { role: holms.fqdn, when hostname: bbb_server_ip is defined, hostname: "{{ bbb_hostname }}" , fqdn: "{{ bbb_hostname }}", ip_address: "{{ bbb_server_ip }}" }
