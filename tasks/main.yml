@@ -66,7 +66,7 @@
   when: bbb_letsencrypt_enable and not bbbcert.stat.exists
 
 - import_tasks: certificate-selfsigned.yml
-  when: not bbb_letsencrypt_enable and not bbbcert.stat.exists
+  when: not bbb_letsencrypt_enable and not bbbcert.stat.exists and not (bbb_ssl_certificate is defined and bbb_ssl_private_key is defined)
 
 - import_tasks: provided-certificate.yml
   when: not bbb_letsencrypt_enable and bbb_ssl_certificate is defined and bbb_ssl_private_key is defined
